@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  main_front:
+    container_name: main_front
+    build: ./main_front
+    volumes:
+      - ./main_front:/src
+    command: sh -c "cd react-sample && yarn start"
+    ports:
+      - "3000:3000"
+    stdin_open: true
+  angular_component:
+    container_name: angular_component
+    build: ./angular_component
+    volumes:
+      - ./angular_component/angular-c-sample:/src
+    command: sh -c "ng serve --host 0.0.0.0"
+    ports:
+      - "4200:4200"
+    tty: true
+    stdin_open: true
+  react_component:
+    container_name: react_component
+    build: ./react_component
+    volumes:
+      - ./react_component:/src
+    command: sh -c "cd react-c-sample && yarn start"
+    ports:
+      - "3002:3000"
+    stdin_open: true
